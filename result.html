@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/result.css') }}">
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image:  url('/static/images/BG2.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        color: #131212;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        position: relative;
+    }
+</style>
+<body>
+    <div class="container results">
+        <h1>Mortgage Prediction Outcome</h1>
+        {% if error_message %}
+            <h2 style="color: rgba(255, 0, 0, 0.734);">{{ error_message }}</h2>
+        {% else %}
+        <p>Delinquency Status Classification Prediction:
+            {% if classification_prediction == 0 %}
+            <h2>Non-Delinquent </h2>
+            {% else %}
+            <h2>Delinquent</h2>
+            {% endif %}
+        </p>
+        <p>Prepayment Risk Amount Regression Forecast:</p> 
+        <h2>{{ regression_prediction }} USD</h2>
+        {% endif %}
+        <a href="{{ url_for('home') }}" class="back-link">Back To The Form</a>
+    </div>
+</body>
+</html>

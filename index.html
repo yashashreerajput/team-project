@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mortgage Prediction</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-image:  url('/static/images/BG2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    color: #333;
+    margin: 0;
+    padding: 0;
+    overflow: auto; 
+    height: 100vh;
+}
+</style>
+<body>
+
+    <div class="container">
+        <h1 class="text-center">Mortgage Prediction</h1>
+        <h4 class="text-center">Please fill out the form below to predict mortgage delinquency and credit risk based on key financial indicators</h4>
+        <form action="/predict" method="POST">
+            <!-- Months Delinquent -->
+            <div class="mb-3">
+                <label for="MonthsDelinquent" class="form-label">Months Delinquent</label>
+                <input type="number" class="form-control" id="MonthsDelinquent" name="MonthsDelinquent" value="{{ num_cols['MonthsDelinquent'] }}" required>
+            </div>
+
+            <!-- Number of Borrowers -->
+            <div class="mb-3">
+                <label for="NumBorrowers" class="form-label">Number of Borrowers</label>
+                <input type="number" class="form-control" id="NumBorrowers" name="NumBorrowers" value="{{ num_cols['NumBorrowers'] }}" required>
+            </div>
+            
+            <!-- LTV -->
+            <div class="mb-3">
+                <label for="LTV" class="form-label">LTV</label>
+                <input type="number" class="form-control" id="LTV" name="LTV" value="{{ num_cols['LTV'] }}" required>
+            </div>
+            
+            <!-- DTI -->
+            <div class="mb-3">
+                <label for="DTI" class="form-label">DTI</label>
+                <input type="number" class="form-control" id="DTI" name="DTI" value="{{ num_cols['DTI'] }}" required>
+            </div>
+        
+            <!-- Original UPB -->
+            <div class="mb-3">
+                <label for="OrigUPB" class="form-label">Original UPB</label>
+                <input type="number" class="form-control" id="OrigUPB" name="OrigUPB" value="{{ num_cols['OrigUPB'] }}" required>
+            </div>
+
+            <!-- Credit Score -->
+            <div class="mb-3">
+                <label for="CreditScore" class="form-label">Credit Score</label>
+                <input type="number" class="form-control" id="CreditScore" name="CreditScore" value="{{ num_cols['CreditScore'] }}" required>
+            </div>
+
+            <!-- Months in Repayment -->
+            <div class="mb-3">
+                <label for="MonthsInRepayment" class="form-label">Months in Repayment</label>
+                <input type="number" class="form-control" id="MonthsInRepayment" name="MonthsInRepayment" value="{{ num_cols['MonthsInRepayment'] }}" required>
+            </div>
+
+            <!-- Channel -->
+            <div class="mb-3">
+                <label for="Channel" class="form-label">Channel</label>
+                <select class="form-select" id="Channel" name="Channel" required>
+                    {% for option in cat_cols['Channel'] %}
+                        <option value="{{ option }}">{{ option }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+
+            <!-- First Time Homebuyer -->
+            <div class="mb-3">
+                <label for="FirstTimeHomebuyer" class="form-label">First Time Homebuyer</label>
+                <select class="form-select" id="FirstTimeHomebuyer" name="FirstTimeHomebuyer" required>
+                    {% for option in cat_cols['FirstTimeHomebuyer'] %}
+                        <option value="{{ option }}">{{ option }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- OCLTV -->
+            <div class="mb-3">
+                <label for="OCLTV" class="form-label">OCLTV</label>
+                <input type="number" class="form-control" id="OCLTV" name="OCLTV" value="{{ num_cols['OCLTV'] }}" required>
+            </div>
+
+
+            <!-- Original Interest Rate -->
+            <div class="mb-3">
+                <label for="OrigInterestRate" class="form-label">Original Interest Rate</label>
+                <input type="number" step="0.01" class="form-control" id="OrigInterestRate" name="OrigInterestRate" value="{{ num_cols['OrigInterestRate'] }}" required>
+            </div>
+
+
+            <!-- Original Loan Term -->
+            <div class="mb-3">
+                <label for="OrigLoanTerm" class="form-label">Original Loan Term</label>
+                <input type="number" class="form-control" id="OrigLoanTerm" name="OrigLoanTerm" value="{{ num_cols['OrigLoanTerm'] }}" required>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary">Predict</button>
+            </div>
+        </form>
+        {% if error_message %}
+        <p style="color: kirgba(255, 0, 0, 0.683);">{{ error_message }}</p>
+        {% endif %}
+    </div>
+    
+    </body>
+</html>
