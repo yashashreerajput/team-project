@@ -28,4 +28,35 @@ Jupyter Notebooks (if used)
 Any libraries specific to your components (e.g., Pandas, Scikit-Learn, TensorFlow, Flask)
 
 ## Project Structure
+team-project/
+├── data/
+├── notebooks/
+├── src/
+├── README.md
+├── requirements.txt
+
+## How to Use
+
+1. Clone the repository  
+git clone https://github.com/yashashreerajput/team-project.git
+
+
+2. Install dependencies  
+pip install -r requirements.txt
+
+3. Run the main scripts or notebooks based on project design
+
+## Contributions
+
+This project was completed collaboratively by our team. Each member contributed different modules and parts of the pipeline. All contributions were coordinated using GitHub branches and commits.
+
+## Outcome
+
+This team project showcases the ability to work in a group setting, manage tasks effectively, merge development efforts, and deliver a unified codebase that solves a real-world problem.
+
+---
+
+Enjoy exploring the project!
+
+
 
